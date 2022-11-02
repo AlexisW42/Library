@@ -14,21 +14,23 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
   this.showInfo = function () {
-    if (read)
+    console.log(this.read);
+    if (this.read) {
       return `<div class="text-card-book"> 
                 <span style="font-size: 1.5rem">${this.title}</span><br>
                 by ${this.author}<br>
                 ${this.pages} pages<br>
                 read yet
-              </div>`
-
-    else
+              </div>`;
+    }
+    else {
       return `<div class="text-card-book"> 
                 <span style="font-size: 1.5rem">${this.title}</span><br>
                 by ${this.author}<br>
                 ${this.pages} pages<br>
                 not read yet
-              </div>`
+              </div>`;
+    }
   }
 }
 
@@ -38,19 +40,30 @@ function addBooksMyShelf(title, author, pages, read) {
   showBooks();
 }
 
+Book.prototype.readChange = function () {
+  this.read = !this.read;
+}
+
 function showBooks() {
   placeCard.innerHTML = "";
   if (booksMyShelf.length === 0)
     thereAreNoBooks();
   else {
     booksMyShelf.forEach((element, index) => {
+
       const remove = document.createElement('button');
       remove.innerHTML = 'remove';
       remove.addEventListener('click', removeBook);
+
+      const change = document.createElement('button');
+      change.innerHTML = 'Change status';
+      change.addEventListener('click', changeStatus);
+
       const tag = document.createElement('div');
       tag.setAttribute('class', 'card');
       tag.setAttribute('id', index);
       tag.innerHTML = `${element.showInfo()}`
+      tag.appendChild(change);
       tag.appendChild(remove);
       placeCard.appendChild(tag);
     });
@@ -62,11 +75,20 @@ function removeBook(e) {
   showBooks();
 }
 
+function changeStatus(e) {
+  let index = e.target.parentElement.id;
+  booksMyShelf[index].readChange();
+
+  console.log(booksMyShelf[index].showInfo());
+  showBooks();
+}
+
 function thereAreNoBooks() {
   const tag = document.createElement('div');
   tag.innerHTML = `There are currently no books`
   placeCard.appendChild(tag);
 }
+
 function deleteInputs() {
   inputAddBookForm.forEach(element => {
     element.value = '';
