@@ -49,6 +49,7 @@ body {
 }
 
 button {
+  justify-self: center;
   font-size: 1rem;
   padding: 1rem;
   border: none;
@@ -59,6 +60,7 @@ button {
 }
 
 .card {
+  display: grid;
   padding: 3rem;
   border-radius: 1rem;
   height: 100px;
