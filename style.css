@@ -67,3 +67,41 @@ button {
   background-color: #ffffff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
+
+.add-book-screen {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-items: center;
+  align-items: center;
+  backdrop-filter: brightness(20%);
+}
+
+.add-book-form {
+  display: grid;
+  position: relative;
+  gap: .2rem;
+  border-radius: .5rem;
+  padding: 2rem;
+  background-color: #f0f9ff;
+}
+
+.close-form {
+  padding: 0;
+  background-color:transparent;
+  color: black;
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+}
+
+input {
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: .2rem;
+  font-size: 1rem;
+  padding: .5rem;
+  margin:  0rem 0rem 2rem 0rem;
+}
