@@ -1,9 +1,8 @@
 const booksMyShelf = [];
-
+const placeCard = document.querySelector('.shelf');
 const newBookButton = document.querySelector('.add-book-button');
-console.log(newBookButton)
 const addBookScreen = document.querySelector('.add-book-screen');
-console.log(addBookScreen)
+showBooks();
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -31,17 +30,23 @@ function addBooksMyShelf(title, author, pages, read) {
 }
 
 function showBooks() {
-  const placeCard = document.querySelector('.shelf');
   placeCard.innerHTML = "";
   if (booksMyShelf.length === 0)
-    // thereIsNoBooks();
-    console.log("Empty");
+    thereAreNoBooks();
   else {
-    booksMyShelf.forEach(element => {
+    booksMyShelf.forEach((element, index) => {
       const tag = document.createElement('div');
       tag.setAttribute('class', 'card');
+      tag.setAttribute('id', index);
       tag.innerHTML = `${element.showInfo()}`
       placeCard.appendChild(tag);
     });
   }
+}
+
+function thereAreNoBooks() {
+  const tag = document.createElement('div');
+  // tag.setAttribute('class', 'card');
+  tag.innerHTML = `There are currently no books`
+  placeCard.appendChild(tag);
 }
