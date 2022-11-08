@@ -8,13 +8,16 @@ const addToShelfButton = document.querySelector('.add-to-shelf')
 
 showBooks();
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.showInfo = function () {
-    console.log(this.read);
+class Book {
+
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  showInfo = function () {
     if (this.read) {
       return `<div class="text-card-book"> 
                 <span style="font-size: 1.5rem">${this.title}</span><br>
@@ -78,8 +81,6 @@ function removeBook(e) {
 function changeStatus(e) {
   let index = e.target.parentElement.id;
   booksMyShelf[index].readChange();
-
-  console.log(booksMyShelf[index].showInfo());
   showBooks();
 }
 
@@ -93,6 +94,7 @@ function deleteInputs() {
   inputAddBookForm.forEach(element => {
     element.value = '';
   });
+  inputAddBookForm[3].checked = false;
 }
 
 newBookButton.addEventListener('click', (e) => {
